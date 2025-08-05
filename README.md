@@ -124,7 +124,50 @@ Use PlatformIO’s **Build → Upload → Monitor** for each board.
 
 ---
 
-## **8. Next Steps**
+## **8. Terminal Commands (PlatformIO CLI)**
+
+With the following environments in `platformio.ini`:
+
+- `controller` → `/dev/cu.usbserial-10`  
+- `drive_node` → `/dev/cu.usbserial-110`  
+- `dome_node` → `/dev/cu.usbserial-3130`  
+
+### **Build**
+```bash
+pio run -e controller
+pio run -e drive_node
+pio run -e dome_node
+```
+
+### **Upload**
+```bash
+pio run -t upload -e controller
+pio run -t upload -e drive_node
+pio run -t upload -e dome_node
+```
+
+### **Monitor Serial Output**
+```bash
+pio device monitor -e controller
+pio device monitor -e drive_node
+pio device monitor -e dome_node
+```
+
+### **Build, Upload, and Monitor**
+```bash
+pio run -t upload -e controller && pio device monitor -e controller
+```
+
+### **Clean Build**
+```bash
+pio run -t clean -e controller
+pio run -t clean -e drive_node
+pio run -t clean -e dome_node
+```
+
+---
+
+## **9. Next Steps**
 
 Once LED testing is reliable:
 
@@ -135,7 +178,7 @@ Once LED testing is reliable:
 
 ---
 
-## **9. Troubleshooting**
+## **10. Troubleshooting**
 
 - **LED stays off** → Check MAC addresses & pairing  
 - **LED flickers at idle** → Adjust deadzone in `controller.cpp`  
